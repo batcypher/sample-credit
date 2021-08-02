@@ -1,7 +1,6 @@
-FROM python:3.6
-RUN mkdir /usr/src/app/
-COPY . /usr/src/app/
-EXPOSE 5000
+FROM tiangolo/uwsgi-nginx-flask:python3.7
+COPY ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-WORKDIR /usr/src/app/creditrisk_poc/
-CMD ["python", "main.py"]
+COPY  . /app
+RUN mv /app/creditrisk_poc/uwsgi.ini /app/uwsgi.ini
+ENV MESSAGE "CREDIT RISK TEST"
