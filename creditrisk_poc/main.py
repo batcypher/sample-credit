@@ -17,6 +17,8 @@ from hydrus.extensions.socketio_factory import create_socket
 import logging
 import json
 import os
+from pathlib import Path
+from os.path import abspath, dirname
 
 logger = logging.getLogger(__file__)
 
@@ -29,7 +31,9 @@ DB_URL = (
     else "sqlite:///database.db"
 )
 HYDRUS_SERVER_URL = f"http://localhost:{PORT}/"
-API_DOC_PATH = "api_doc/ApiDoc.jsonld"
+
+cwd_path = Path(dirname(dirname(abspath(__file__))))
+API_DOC_PATH = cwd_path / "api_doc" / "ApiDoc.jsonld"
 
 # loading serialized api_doc object
 doc_file = open(API_DOC_PATH, "r")
