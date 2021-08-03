@@ -25,11 +25,8 @@ logger = logging.getLogger(__file__)
 # Fetching database_url & api_doc path from config file
 PORT = int(os.environ["PORT"]) if "PORT" in dict(os.environ).keys() else 8080
 API_NAME = os.environ["API_NAME"] if "API_NAME" in dict(os.environ).keys() else "api"
-DB_URL = (
-    os.environ["DB_URL"]
-    if "DB_URL" in dict(os.environ).keys()
-    else "sqlite:///database.db"
-)
+DB_URL = os.environ["DB_URL"]
+
 HYDRUS_SERVER_URL = f"http://localhost:{PORT}/"
 
 cwd_path = Path(dirname(dirname(abspath(__file__))))

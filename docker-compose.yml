@@ -12,27 +12,27 @@ services:
       - DEBUG=1
       - API_NAME=api
       # relative path to the ApiDoc, from the project root
-      - DB_URL=sqlite:///database.db
-      #- DB_URL=postgresql://hydra:hailhydra@postgres_db:9001/hydrus
+      # - DB_URL=sqlite:///database.db
+      - DB_URL=postgresql://hydra:hailhydra@postgres_db:9001/hydrus
       - PORT=8080  # shall match with "ports" above
     networks:
       main:
         aliases:
           - creditrisk_server
 
-#  postgres:
-#    restart: always
-#    environment:
-#      - POSTGRES_USER=hydra
-#      - POSTGRES_PASSWORD=hailhydra
-#      - POSTGRES_DB=hydrus
-#    image: postgres:latest
-#    ports:
-#      - "9001:5432"
-#    networks:
-#      main:
-#        aliases:
-#          - postgres_db
+ postgres:
+   restart: always
+   environment:
+     - POSTGRES_USER=hydra
+     - POSTGRES_PASSWORD=hailhydra
+     - POSTGRES_DB=hydrus
+   image: postgres:latest
+   ports:
+     - "9001:5432"
+   networks:
+     main:
+       aliases:
+         - postgres_db
 
 networks:
   main:
