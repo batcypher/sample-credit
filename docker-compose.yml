@@ -26,7 +26,11 @@ services:
     environment:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: userpass
-      POSTGRES_DB: testdb        
+      POSTGRES_DB: testdb
+    networks:
+      main:
+        aliases:
+          - creditrisk_server     
 
 
 networks:
