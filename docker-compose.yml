@@ -7,32 +7,27 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # - HYDRUS_SERVER_URL=http://192.168.99.100:8081/ ## For windows 10
-      # - HYDRUS_SERVER_URL=http://54.169.232.177:8080/
       - DEBUG=1
       - API_NAME=api
-      # relative path to the ApiDoc, from the project root
-      # - DB_URL=sqlite:///database.db
-      - DB_URL=postgresql://hydra:hailhydra@postgres_db:9001/hydrus
-      - PORT=8080  # shall match with "ports" above
+      - DB_URL=postgresql://username:userpass@db_pg:5432/testdb
+      - PORT=8080
+    depends_on:
+      - pg_main
     networks:
       main:
         aliases:
           - creditrisk_server
-
-  postgres:
+  
+  pg_main:
+    image: postgres:13.3-alpine
     restart: always
-    environment:
-      - POSTGRES_USER=hydra
-      - POSTGRES_PASSWORD=hailhydra
-      - POSTGRES_DB=hydrus
-    image: postgres:latest
     ports:
-      - "9001:5432"
-    networks:
-      main:
-        aliases:
-          - postgres_db
+      - "5432"
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: userpass
+      POSTGRES_DB: testdb        
+
 
 networks:
   main:
