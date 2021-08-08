@@ -27,11 +27,14 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: userpass
       POSTGRES_DB: testdb
+    volumes:
+       - pgdata:/var/lib/postgresql/data/
     networks:
       main:
         aliases:
           - creditrisk_server     
 
-
+volumes:
+    pgdata:
 networks:
   main:
