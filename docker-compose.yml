@@ -11,6 +11,8 @@ services:
       - API_NAME=api
       - DB_URL=postgresql://username:userpass@pg_main:5432/testdb
       - PORT=8080
+    volumes:
+      - .:/app
     depends_on:
       - pg_main
     networks:
